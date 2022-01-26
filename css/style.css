@@ -42,7 +42,7 @@ main {
 
 form {
   width: 30%;
-  height: 50%;
+  height:fit-content;
   display: flex;
   flex-direction: column;
   align-items: center;

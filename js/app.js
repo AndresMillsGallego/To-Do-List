@@ -1,7 +1,7 @@
 'use strict';
 
 const form = document.querySelector('form');
-const list = document.getElementById('renderedList');
+const list = document.getElementById('mainList');
 let listItemCounter = 0;
 
 function createButton(type, name, parentEl) {
@@ -14,8 +14,8 @@ function createButton(type, name, parentEl) {
 
 function createNewCheckbox(text) {
   let li = document.createElement('li');
-  li.setAttribute('class','checkBox');
-  li.setAttribute('id', listItemCounter);
+  li.className ='checkBox';
+  li.id = listItemCounter;
   let label = document.createElement('label');
   let input =  document.createElement('input');
   label.textContent = text;
@@ -34,21 +34,20 @@ function handleSubmit(event) {
   let newListItem = event.target.listItem.value;
   createNewCheckbox(newListItem);
   listItemCounter++;
-  console.log(listItemCounter);
   form.reset();
 }
 
 function handleClick(event) {
   for (let i = 0; i < listItemCounter; i++) {
     let li = document.getElementById(i);
-    if (event.target.name === 'X') {
+    let targetButton = event.target;
+    if (targetButton.name === 'X' && targetButton.parentElement === li) {
       list.removeChild(li);
-    } else if (event.target.name === '!') {
+    } else if (targetButton.name === '!' && targetButton.parentElement === li) {
       li.classList.toggle('highlight');
-    } else if (event.target.name === 'checkbox') {
+    } else if (targetButton.name === 'checkbox' && targetButton.parentElement.parentElement === li) {
       li.classList.toggle('checkedBox');
     }
-    console.log(event.target.name);
   }
 }
 
