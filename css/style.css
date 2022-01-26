@@ -70,8 +70,20 @@ li {
   /* flex-wrap: wrap; */
 }
 
+.checkedBox {
+  text-decoration: line-through;
+}
+
+.highlight {
+  color: red;
+  font-weight: bold;
+}
 #renderedList label {
   margin-right: 1rem;
   margin-left: .5rem;
+}
+
+#renderedList button {
+  margin-right: 1rem;
 }
 
