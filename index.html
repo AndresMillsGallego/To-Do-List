@@ -11,16 +11,19 @@
 
 <body>
   <header>
-    <img src="https://place-hold.it/100x50" alt="#">
+    <i class="fas fa-clipboard-list"></i>
     <h1>To Do List</h1>
     <nav>
-      <i class="fab fa-spotify"><a href="https://open.spotify.com/"></a></i>
+      <a href="https://open.spotify.com/"><i class="fab fa-spotify"></i></a>
       <i class="fas fa-calendar-alt"></i>
-      <i class="fab fa-google"><a href="https://www.google.com/"></a></i>
+      <a href="https://www.google.com/"><i class="fab fa-google"></i></a>
     </nav>
   </header>
   <main>
-    <div id="renderedList"></div>
+    <div id="renderedList">
+    <ol id="mainList">
+    </ol>
+  </div>
     <form>
       <fieldset>
         <legend>Make Your List</legend>
@@ -29,7 +32,6 @@
         </label>
       </fieldset>
       <button type="submit">Add</button>
-      <div id="renderedList"></div>
     </form>
   </main>
   <footer>

@@ -18,8 +18,10 @@ header {
   margin-bottom: 30px;
   padding: 1rem;
 }
-
-i {
+header > i {
+  font-size: 3rem;
+}
+nav i {
   margin-left: 1rem;
 }
 main {
@@ -31,9 +33,11 @@ main {
 }
 
 #renderedList {
-  width: 40%;
-  background: url(../img/Stationary.png);
-  background-size: auto;
+  width: 50%;
+  border: 3px solid midnightblue;
+  border-radius: 5px;
+  background-color: azure;
+  padding: 2rem;
 }
 
 form {
@@ -54,3 +58,20 @@ fieldset {
   text-align: center;
   margin-bottom: 2rem;
 }
+
+ol {
+  list-style-type: decimal;
+  list-style-position: inside;
+}
+
+li {
+  margin: 1rem auto;
+  /* display: flex; */
+  /* flex-wrap: wrap; */
+}
+
+#renderedList label {
+  margin-right: 1rem;
+  margin-left: .5rem;
+}
+
