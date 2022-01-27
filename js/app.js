@@ -1,11 +1,19 @@
 'use strict';
 
-const listDiv = document.getElementById('renderedList');
+// const listDiv = document.getElementById('renderedList');
 const form = document.querySelector('form');
 const list = document.getElementById('mainList');
 const header = document.getElementById('headerDiv');
 // let photoArray = ['arc', 'beach', 'beach2', 'boulangerie', 'eiffel', 'paradise-pier', 'walt', 'tanzania'];
-let listItemCounter = 0;
+let listArray = [];
+let itemCounter = 0;
+
+function ListItem(text) {
+  this.textContent = text;
+  this.isChecked = false;
+  this.isImportant = false;
+}
+
 
 function createButton(type, name, parentEl) {
   let button = document.createElement('button');
@@ -15,16 +23,35 @@ function createButton(type, name, parentEl) {
   parentEl.appendChild(button);
 }
 
-function createNewCheckbox(text) {
+function unpackItems() {
+  let unpackedItems = localStorage.getItem('items');
+  if (unpackedItems) {
+    let parsedItems = JSON.parse(unpackedItems);
+    for (let order of parsedItems) {
+      let textContent = order.textContent;
+      let ischecked = order.isChecked;
+      let isImportant = order.isImportant;
+      renderListItem(textContent);
+    }
+  } else {
+    for (let i = 0; i < listArray.length; i++) {
+      let listContent = listArray[i].textContent;
+      let isChecked = false;
+      let isImportant = false;
+      renderListItem(listContent, isChecked, isImportant);
+    }
+  }
+}
+
+function renderListItem(text) {
   let li = document.createElement('li');
   li.className ='checkBox';
-  li.id = listItemCounter;
+  li.id = itemCounter;
   let label = document.createElement('label');
   let input =  document.createElement('input');
   label.textContent = text;
   input.type = 'checkbox';
   input.name = 'checkbox';
-  input.id = text;
   li.appendChild(label);
   label.appendChild(input);
   list.appendChild(li);
@@ -32,31 +59,34 @@ function createNewCheckbox(text) {
   createButton('click', 'X', li);
 }
 
+function handleSubmit(event) {
+  event.preventDefault();
+  let newItem = event.target.listItem.value;
+  renderListItem(newItem);
+  itemCounter++;
+  let newListEntry = new ListItem(newItem);
+  listArray.push(newListEntry);
+  saveToStorage(listArray);
+  form.reset();
+}
+
 function saveToStorage(item) {
   let stringyItems = JSON.stringify(item);
   localStorage.setItem('items', stringyItems);
 }
 
-function handleSubmit(event) {
-  // let img = document.querySelector('img');
-  // listDiv.removeChild(img);
-  event.preventDefault();
-  let newListItem = event.target.listItem.value;
-  createNewCheckbox(newListItem);
-  listItemCounter++;
-  form.reset();
-}
-
 function handleClick(event) {
-  for (let i = 0; i < listItemCounter; i++) {
+  for (let i = 0; i < listArray.length; i++) {
     let li = document.getElementById(i);
     let targetButton = event.target;
     if (targetButton.name === 'X' && targetButton.parentElement === li) {
       list.removeChild(li);
     } else if (targetButton.name === '!' && targetButton.parentElement === li) {
       li.classList.toggle('highlight');
+      listArray[i].isImportant = true;
     } else if (targetButton.name === 'checkbox' && targetButton.parentElement.parentElement === li) {
       li.classList.toggle('checkedBox');
+      listArray[i].ischecked = true;
     }
   }
 }
@@ -89,6 +119,8 @@ function toggleMode(event) {
 // }
 
 // window.addEventListener('load', randomPicture);
+unpackItems();
+console.log(listArray);
 form.addEventListener('submit', handleSubmit);
 list.addEventListener('click', handleClick);
 header.addEventListener('click', toggleMode);
