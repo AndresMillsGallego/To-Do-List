@@ -1,8 +1,10 @@
 'use strict';
 
+const listDiv = document.getElementById('renderedList');
 const form = document.querySelector('form');
 const list = document.getElementById('mainList');
 const header = document.getElementById('headerDiv');
+let photoArray = ['arc', 'beach', 'beach2', 'boulangerie', 'eiffel', 'paradise-pier', 'walt', 'tanzania'];
 let listItemCounter = 0;
 
 function createButton(type, name, parentEl) {
@@ -31,10 +33,13 @@ function createNewCheckbox(text) {
 }
 
 function handleSubmit(event) {
+  let img = document.querySelector('img');
+  listDiv.removeChild(img);
   event.preventDefault();
   let newListItem = event.target.listItem.value;
   createNewCheckbox(newListItem);
   listItemCounter++;
+  window.removeEventListener('load', randomPicture);
   form.reset();
 }
 
@@ -67,6 +72,19 @@ function toggleMode(event) {
   }
 }
 
+function randomPicture() {
+  let num = Math.floor(Math.random() * photoArray.length);
+  console.log(num);
+  let photo = `${photoArray[num]}.jpg`;
+  let img = document.createElement('img');
+  img.src = `../img/${photo}`;
+  img.alt = photoArray[num];
+  img.width = '430';
+  img.height = '390';
+  listDiv.appendChild(img);
+}
+
+window.addEventListener('load', randomPicture);
 form.addEventListener('submit', handleSubmit);
 list.addEventListener('click', handleClick);
 header.addEventListener('click', toggleMode);
