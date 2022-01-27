@@ -12,30 +12,45 @@
 <body>
   <header>
     <i class="fas fa-clipboard-list"></i>
-    <h1>To Do List</h1>
+    <div id="headerDiv">
+      <h1>To Do List</h1>
+      <label>Normal Mode
+        <input type="radio" id="normal" name="toggleMode" value="normal">
+      </label>
+      <label>Dark Mode
+        <input type="radio" id="dark" name="toggleMode" value="dark">
+      </label>
+    </div>
     <nav>
-      <a href="https://open.spotify.com/"><i class="fab fa-spotify"></i></a>
-      <i class="fas fa-calendar-alt"></i>
-      <a href="https://www.google.com/"><i class="fab fa-google"></i></a>
+      <a href="https://open.spotify.com/" target="_blank"><i class="fab fa-spotify"></i></a>
+      <a href="https://calendar.google.com/calendar/u/0/r" target="_blank"></a><i class="fas fa-calendar-alt"></i>
+      <a href="https://www.google.com/" target="_blank"><i class="fab fa-google"></i></a>
     </nav>
   </header>
   <main>
     <div id="renderedList">
-    <ol id="mainList">
-    </ol>
-  </div>
-    <form>
-      <fieldset>
-        <legend>Make Your List</legend>
-        <label>Add Items Here
-          <input type="text" name="listItem" required>
-        </label>
-      </fieldset>
-      <button type="submit">Add</button>
-    </form>
+      <ol id="mainList">
+      </ol>
+    </div>
+    <div id="formDiv">
+      <form>
+        <fieldset>
+          <legend>Make Your List</legend>
+          <label>Add Items
+            <input type="text" name="listItem" required>
+          </label>
+        </fieldset>
+        <button type="submit">Add</button>
+      </form>
+      <ul id="instructions">
+        <li>Add items to your list above</li>
+        <li>Use the checkbox to mark the item "done"</li>
+        <li>Use the "!" to add priority to your item!</li>
+        <li>Use the "X" to delete items from your list</li>
+      </ul>
+    </div>
   </main>
   <footer>
-
   </footer>
   <script src="js/app.js"></script>
 </body>

@@ -5,8 +5,8 @@
 body {
   background-color: rgba(0, 191, 255, 0.534);
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  color: saddlebrown;
-  max-width: 960px;
+  color: rgba(0, 0, 0, 0.787);
+  max-width: 1024px;
   margin: 30px auto;
   height: 100vh;
 }
@@ -18,11 +18,36 @@ header {
   margin-bottom: 30px;
   padding: 1rem;
 }
+
+#headerDiv {
+  width: 50%;
+  text-align: center;
+}
+
+h1 {
+  font-size: 2rem;
+  border-bottom: 3px double red;
+  padding-bottom: .5rem;
+  margin-bottom: .5rem;
+}
+
+#headerDiv label {
+  margin-right: 2rem;
+}
 header > i {
   font-size: 3rem;
 }
+
 nav i {
   margin-left: 1rem;
+}
+
+nav i:hover {
+  cursor: pointer;
+  color: rgba(255, 255, 0, 0.733);
+}
+a {
+  color: inherit;
 }
 main {
   display: flex;
@@ -38,25 +63,33 @@ main {
   border-radius: 5px;
   background-color: azure;
   padding: 2rem;
+  box-shadow: 3px 3px yellow, 6px 6px midnightblue;
+}
+
+#formDiv {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
 }
 
 form {
-  width: 30%;
-  height:fit-content;
+  width: fit-content;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2rem;
-  border: 3px solid midnightblue;
-  border-radius: 5px;
+  padding: 1rem;
 }
 
 fieldset {
-  padding: 2rem;
+  padding: 1rem;
+  padding-bottom: 2rem;
   border: 3px solid crimson;
   border-radius: 5px;
+  border-radius: 5px;
+  box-shadow: 0px 5px 10px;
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 ol {
@@ -64,20 +97,40 @@ ol {
   list-style-position: inside;
 }
 
-li {
-  margin: 1rem auto;
-  /* display: flex; */
-  /* flex-wrap: wrap; */
+ul {
+  list-style-type: disc;
+  list-style-position: inside;
+  font-size: .75rem;
+  text-align: center;
+  margin-top: 2rem;
+  border: 3px solid midnightblue;
+  border-radius: 5px;
+  background-color: azure;
+  padding: 1rem;
 }
 
-.checkedBox {
-  text-decoration: line-through;
+li {
+  margin: 1rem auto;
+}
+
+legend {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+label {
+  font-size: 1rem;
 }
 
 .highlight {
   color: red;
-  font-weight: bold;
 }
+
+.checkedBox {
+  text-decoration: line-through;
+  color: rgba(128, 128, 128, 0.527);
+}
+
 #renderedList label {
   margin-right: 1rem;
   margin-left: .5rem;
@@ -85,5 +138,19 @@ li {
 
 #renderedList button {
   margin-right: 1rem;
+}
+
+#renderedList button:hover {
+  cursor: pointer;
+  color: red;
+}
+
+input {
+  font-size: .75rem;
+  padding: 5px;
+  margin-top: 5px;
+}
+input:hover {
+  border: 1px solid midnightblue;
 }
 
