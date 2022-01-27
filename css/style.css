@@ -2,8 +2,8 @@
   box-sizing: border-box;
 }
 
-body {
-  background-color: rgba(0, 191, 255, 0.534);
+.normalMode {
+  background-color: rgba(58, 155, 187, 0.534);
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: rgba(0, 0, 0, 0.787);
   max-width: 1024px;
@@ -29,11 +29,13 @@ h1 {
   border-bottom: 3px double red;
   padding-bottom: .5rem;
   margin-bottom: .5rem;
+  word-spacing: 1rem;
 }
 
-#headerDiv label {
-  margin-right: 2rem;
+#headerDiv label:nth-child(3) {
+  margin: 0 1.5rem;
 }
+
 header > i {
   font-size: 3rem;
 }
@@ -63,7 +65,7 @@ main {
   border-radius: 5px;
   background-color: azure;
   padding: 2rem;
-  box-shadow: 3px 3px yellow, 6px 6px midnightblue;
+  box-shadow: 3px 3px yellow, 6px 6px midnightblue, 0px 5px 10px;
 }
 
 #formDiv {
@@ -92,6 +94,13 @@ fieldset {
   margin-bottom: 1rem;
 }
 
+form button {
+  padding: .5rem 1rem;
+}
+form button:hover {
+  cursor: pointer;
+  background-color: lavender;
+}
 ol {
   list-style-type: decimal;
   list-style-position: inside;
@@ -100,13 +109,14 @@ ol {
 ul {
   list-style-type: disc;
   list-style-position: inside;
-  font-size: .75rem;
+  font-size: 1rem;
   text-align: center;
   margin-top: 2rem;
   border: 3px solid midnightblue;
   border-radius: 5px;
   background-color: azure;
   padding: 1rem;
+  box-shadow: 0px 5px 10px;
 }
 
 li {
@@ -114,7 +124,7 @@ li {
 }
 
 legend {
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: bold;
 }
 
@@ -149,8 +159,36 @@ input {
   font-size: .75rem;
   padding: 5px;
   margin-top: 5px;
-}
-input:hover {
-  border: 1px solid midnightblue;
+  border: 3px solid transparent;
 }
 
+input:hover {
+  border: 3px solid midnightblue;
+}
+
+.darkMode {
+  background-color: #0f1113c5;
+  color:beige;
+  max-width: 1024px;
+  margin: 30px auto;
+  height: 100vh;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.darkMode #renderedList, 
+ .darkMode ul {
+  background-color: rgba(15, 13, 13, 0.76);
+  border-color: cyan;
+}
+
+.darkMode #renderedList {
+  box-shadow: 3px 3px deeppink, 6px 6px cyan, 0px 5px 10px;
+}
+
+.darkMode nav i:hover {
+  color: cyan;
+}
+
+.darkMode form input:hover {
+  border: 3px solid cyan;
+}

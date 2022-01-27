@@ -2,6 +2,7 @@
 
 const form = document.querySelector('form');
 const list = document.getElementById('mainList');
+const header = document.getElementById('headerDiv');
 let listItemCounter = 0;
 
 function createButton(type, name, parentEl) {
@@ -51,6 +52,21 @@ function handleClick(event) {
   }
 }
 
+function toggleMode(event) {
+  let body = document.getElementById('body');
+  let toggle = event.target;
+  if (toggle.id === 'normal') {
+    body.className = 'normalMode';
+  } else if (toggle.id === 'dark') {
+    body.className = 'darkMode';
+  } else if (toggle.id === 'reset') {
+    document.getElementById('normal').checked = false;
+    document.getElementById('dark').checked = false;
+    document.getElementById('reset').checked = false;
+    body.className = 'normalMode';
+  }
+}
 
 form.addEventListener('submit', handleSubmit);
 list.addEventListener('click', handleClick);
+header.addEventListener('click', toggleMode);
