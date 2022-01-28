@@ -28,32 +28,31 @@ function unpackItems() {
   if (unpackedItems) {
     list.innerHTML = '';
     let parsedItems = JSON.parse(unpackedItems);
-    console.log(parsedItems);
-    for (let order of parsedItems) {
-      let textContent = order.textContent;
+    for (let i = 0; i < parsedItems.length; i++) {
+      let textContent = parsedItems[i].textContent;
+      let id = i;
       // let isChecked = order.isChecked;
       // let isImportant = order.isImportant;
-      renderListItem(textContent);
+      renderListItem(textContent, id);
+      listArray.push(parsedItems);
     }
   }
 }
 
-function renderListItem(text) {
-  for (let i = 0; i < listArray.length; i++) {
-    let li = document.createElement('li');
-    li.className ='checkBox';
-    li.id = i;
-    let label = document.createElement('label');
-    let input =  document.createElement('input');
-    label.textContent = text;
-    input.type = 'checkbox';
-    input.name = 'checkbox';
-    li.appendChild(label);
-    label.appendChild(input);
-    list.appendChild(li);
-    createButton('click', '!', li);
-    createButton('click', 'X', li);
-  }
+function renderListItem(text, elemId) {
+  let li = document.createElement('li');
+  li.className ='checkBox';
+  li.id = elemId;
+  let label = document.createElement('label');
+  let input =  document.createElement('input');
+  label.textContent = text;
+  input.type = 'checkbox';
+  input.name = 'checkbox';
+  li.appendChild(label);
+  label.appendChild(input);
+  list.appendChild(li);
+  createButton('click', '!', li);
+  createButton('click', 'X', li);
 }
 
 function handleSubmit(event) {
@@ -61,7 +60,7 @@ function handleSubmit(event) {
   let newItem = event.target.listItem.value;
   let newListEntry = new ListItem(newItem);
   listArray.push(newListEntry);
-  renderListItem(newItem);
+  renderListItem(newItem, itemCounter);
   itemCounter++;
   form.reset();
 }
@@ -74,9 +73,11 @@ function saveToStorage(item) {
 function handleClick(event) {
   for (let i = 0; i < listArray.length; i++) {
     let li = document.getElementById(i);
+    console.log(li);
     let targetButton = event.target;
     if (targetButton.name === 'X' && targetButton.parentElement === li) {
       list.removeChild(li);
+      listArray.splice(i,1);
     } else if (targetButton.name === '!' && targetButton.parentElement === li) {
       li.classList.toggle('highlight');
       listArray[i].isImportant = true;
@@ -106,6 +107,11 @@ function headerClicks(event) {
   }
   if (toggle.id === 'load') {
     unpackItems();
+  }
+  if (toggle.id === 'clear') {
+    list.innerHTML = '';
+    itemCounter = 0;
+    localStorage.clear();
   }
 }
 
