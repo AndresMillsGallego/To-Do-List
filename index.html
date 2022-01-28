@@ -11,7 +11,7 @@
 
 <body id="body" class="normalMode">
   <header>
-    <i class="fas fa-clipboard-list"></i>
+    <a href="index.html"><i class="fas fa-clipboard-list"></i></a>
     <div id="headerDiv">
       <h1>To Do List</h1>
       <label>Normal Mode
@@ -25,9 +25,7 @@
       </label>
     </div>
     <nav>
-       <i class="fas fa-save" id="save"></i>
-      <i class="fas fa-file-download" id="load"></i>
-      <i class="fas fa-trash-alt" id="clear"></i>
+      <a href="https://github.com/" target="_blank"><i class="fab fa-github"></i></a>
       <a href="https://open.spotify.com/" target="_blank"><i class="fab fa-spotify"></i></a>
       <a href="https://www.google.com/" target="_blank"><i class="fab fa-google"></i></a>
     </nav>
@@ -36,6 +34,12 @@
     <div id="renderedList">
       <ol id="mainList">
       </ol>
+    </div>
+    <div id="buttonDiv">
+      <i class="fas fa-save" id="save" title="Save This List"></i>
+      <i class="fas fa-file-download" id="load" title="Load Saved List"></i>
+      <i class="fas fa-backspace" id="clear" title="Clear This List"></i>
+      <i class="fas fa-trash-alt" id="delete" title="Delete Saved List"></i>
     </div>
     <div id="formDiv">
       <form>
@@ -48,10 +52,10 @@
         <button type="submit" id="submitButton">Add</button>
       </form>
       <ul id="instructions">
-        <li>Add items to your list above</li>
-        <li>Use the checkbox to mark the item "done"</li>
-        <li>Use the "!" to add priority to your item!</li>
-        <li>Use the "X" to delete items from your list</li>
+        <li><i class="fas fa-save"></i><p>Saves your list.</p></li>
+        <li><i class="fas fa-file-download"></i><p>Loads your saved list</p></li>
+        <li><i class="fas fa-backspace"></i><p>Clears current list</p></li>
+        <li><i class="fas fa-trash-alt"></i><p>Deletes your saved list</p></li>
       </ul>
     </div>
   </main>

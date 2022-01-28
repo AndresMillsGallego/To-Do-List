@@ -3,7 +3,8 @@
 // const listDiv = document.getElementById('renderedList');
 const form = document.querySelector('form');
 const list = document.getElementById('mainList');
-const header = document.querySelector('header');
+// const header = document.querySelector('header');
+let body = document.getElementById('body');
 // let photoArray = ['arc', 'beach', 'beach2', 'boulangerie', 'eiffel', 'paradise-pier', 'walt', 'tanzania'];
 let listArray = [];
 let itemCounter = 0;
@@ -86,7 +87,7 @@ function handleClick(event) {
   }
 }
 
-function headerClicks(event) {
+function buttonClicks(event) {
   let body = document.getElementById('body');
   let toggle = event.target;
   if (toggle.id === 'normal') {
@@ -108,8 +109,11 @@ function headerClicks(event) {
   }
   if (toggle.id === 'clear') {
     list.innerHTML = '';
+  }
+  if (toggle.id === 'delete') {
     itemCounter = 0;
     localStorage.clear();
+    listArray =[];
   }
 }
 
@@ -129,4 +133,4 @@ function headerClicks(event) {
 
 form.addEventListener('submit', handleSubmit);
 list.addEventListener('click', handleClick);
-header.addEventListener('click', headerClicks);
+body.addEventListener('click', buttonClicks);

@@ -8,7 +8,7 @@
   color: rgba(0, 0, 0, 0.787);
   max-width: 1024px;
   margin: 30px auto;
-  height: 100vh;
+  max-height: 100vh;
 }
 
 header {
@@ -36,18 +36,20 @@ h1 {
   margin: 0 1.5rem;
 }
 
-header > i {
+header > a {
   font-size: 3rem;
+}
+
+header i:hover {
+  cursor: pointer;
+  color:rebeccapurple
 }
 
 nav i {
   margin-left: 1rem;
 }
 
-nav i:hover {
-  cursor: pointer;
-  color: rgba(255, 255, 0, 0.733);
-}
+
 a {
   color: inherit;
 }
@@ -72,9 +74,47 @@ img {
   width: 50%;
   border: 3px solid midnightblue;
   border-radius: 5px;
-  background-color: azure;
+  background-color:papayawhip;
   padding: 2rem;
   box-shadow: 3px 3px yellow, 6px 6px midnightblue, 0px 5px 10px;
+}
+
+#buttonDiv {
+  width: 5%;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#buttonDiv i {
+  margin: auto;
+  font-size: 1.75rem;
+}
+
+p {
+  margin-top: 5px;
+}
+
+.fa-save {
+  color: blue;
+}
+
+.fa-file-download {
+  color: yellow;
+}
+
+.fa-backspace {
+  color:rebeccapurple;
+}
+
+.fa-trash-alt {
+  color: red;
+}
+
+#buttonDiv i:hover {
+  cursor: pointer;
+  font-size: 1.8rem;
 }
 
 #formDiv {
@@ -104,33 +144,33 @@ fieldset {
 }
 
 form button {
-  padding: .5rem 1rem;
+  padding: .5rem 2rem;
   border-radius: 3px;
 }
+
 form button:hover {
   cursor: pointer;
-  background-color: lavender;
+  background-color:rgb(255, 239, 213)
 }
+
 ol {
   list-style-type: decimal;
   list-style-position: inside;
 }
 
 ul {
-  list-style-type: disc;
-  list-style-position: inside;
-  font-size: 1rem;
+  list-style-type: none;
+  font-size: .75rem;
   text-align: center;
-  margin-top: 2rem;
   border: 3px solid midnightblue;
   border-radius: 5px;
-  background-color: azure;
-  padding: 1rem;
+  padding: 5px;
   box-shadow: 0px 5px 10px;
 }
 
 li {
   margin: 1rem auto;
+  padding: 3px;
 }
 
 legend {
@@ -142,10 +182,6 @@ label {
   font-size: 1rem;
 }
 
-.highlight {
-  color: red;
-}
-
 .checkedBox {
   text-decoration: line-through;
   color: rgba(128, 128, 128, 0.527);
@@ -154,6 +190,14 @@ label {
 #renderedList label {
   margin-right: 1rem;
   margin-left: .5rem;
+}
+
+.highlight {
+  color: red;
+  font-weight:100;
+  border: 2px dashed gold;
+  border-radius: 10px;
+  padding: 3px;
 }
 
 #renderedList button {
@@ -169,20 +213,20 @@ input {
   font-size: .75rem;
   padding: 5px;
   margin-top: 5px;
-  border: 3px solid transparent;
+  border: 2px solid transparent;
 }
 
 input:hover {
-  border: 3px solid midnightblue;
+  border: 2px solid midnightblue;
 }
 
 .darkMode {
   background-color: #0f1113c5;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   color:beige;
   max-width: 1024px;
   margin: 30px auto;
   height: 100vh;
-  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .darkMode #renderedList, 
@@ -190,15 +234,18 @@ input:hover {
   background-color: rgba(15, 13, 13, 0.76);
   border-color: cyan;
 }
-
+.darkMode input {
+  background-color: rgba(15, 13, 13, 0.76);
+  color: yellow;
+}
 .darkMode #renderedList {
   box-shadow: 3px 3px deeppink, 6px 6px cyan, 0px 5px 10px;
 }
 
-.darkMode nav i:hover {
+.darkMode header i:hover {
   color: cyan;
 }
 
 .darkMode form input:hover {
-  border: 3px solid cyan;
+  border: 2px solid cyan;
 }
