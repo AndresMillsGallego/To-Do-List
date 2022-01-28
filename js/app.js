@@ -80,10 +80,8 @@ function handleClick(event) {
       listArray.splice(i,1);
     } else if (targetButton.name === '!' && targetButton.parentElement === li) {
       li.classList.toggle('highlight');
-      listArray[i].isImportant = true;
     } else if (targetButton.name === 'checkbox' && targetButton.parentElement.parentElement === li) {
       li.classList.toggle('checkedBox');
-      listArray[i].ischecked = true;
     }
   }
 }
