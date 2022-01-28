@@ -3,7 +3,7 @@
 // const listDiv = document.getElementById('renderedList');
 const form = document.querySelector('form');
 const list = document.getElementById('mainList');
-const header = document.getElementById('headerDiv');
+const header = document.querySelector('header');
 // let photoArray = ['arc', 'beach', 'beach2', 'boulangerie', 'eiffel', 'paradise-pier', 'walt', 'tanzania'];
 let listArray = [];
 let itemCounter = 0;
@@ -26,47 +26,43 @@ function createButton(type, name, parentEl) {
 function unpackItems() {
   let unpackedItems = localStorage.getItem('items');
   if (unpackedItems) {
+    list.innerHTML = '';
     let parsedItems = JSON.parse(unpackedItems);
+    console.log(parsedItems);
     for (let order of parsedItems) {
       let textContent = order.textContent;
-      let ischecked = order.isChecked;
-      let isImportant = order.isImportant;
+      // let isChecked = order.isChecked;
+      // let isImportant = order.isImportant;
       renderListItem(textContent);
-    }
-  } else {
-    for (let i = 0; i < listArray.length; i++) {
-      let listContent = listArray[i].textContent;
-      let isChecked = false;
-      let isImportant = false;
-      renderListItem(listContent, isChecked, isImportant);
     }
   }
 }
 
 function renderListItem(text) {
-  let li = document.createElement('li');
-  li.className ='checkBox';
-  li.id = itemCounter;
-  let label = document.createElement('label');
-  let input =  document.createElement('input');
-  label.textContent = text;
-  input.type = 'checkbox';
-  input.name = 'checkbox';
-  li.appendChild(label);
-  label.appendChild(input);
-  list.appendChild(li);
-  createButton('click', '!', li);
-  createButton('click', 'X', li);
+  for (let i = 0; i < listArray.length; i++) {
+    let li = document.createElement('li');
+    li.className ='checkBox';
+    li.id = i;
+    let label = document.createElement('label');
+    let input =  document.createElement('input');
+    label.textContent = text;
+    input.type = 'checkbox';
+    input.name = 'checkbox';
+    li.appendChild(label);
+    label.appendChild(input);
+    list.appendChild(li);
+    createButton('click', '!', li);
+    createButton('click', 'X', li);
+  }
 }
 
 function handleSubmit(event) {
   event.preventDefault();
   let newItem = event.target.listItem.value;
-  renderListItem(newItem);
-  itemCounter++;
   let newListEntry = new ListItem(newItem);
   listArray.push(newListEntry);
-  saveToStorage(listArray);
+  renderListItem(newItem);
+  itemCounter++;
   form.reset();
 }
 
@@ -91,7 +87,7 @@ function handleClick(event) {
   }
 }
 
-function toggleMode(event) {
+function headerClicks(event) {
   let body = document.getElementById('body');
   let toggle = event.target;
   if (toggle.id === 'normal') {
@@ -103,6 +99,13 @@ function toggleMode(event) {
     document.getElementById('dark').checked = false;
     document.getElementById('reset').checked = false;
     body.className = 'normalMode';
+  }
+  if (toggle.id === 'save') {
+    saveToStorage(listArray);
+    console.log('hi');
+  }
+  if (toggle.id === 'load') {
+    unpackItems();
   }
 }
 
@@ -119,8 +122,7 @@ function toggleMode(event) {
 // }
 
 // window.addEventListener('load', randomPicture);
-unpackItems();
-console.log(listArray);
+
 form.addEventListener('submit', handleSubmit);
 list.addEventListener('click', handleClick);
-header.addEventListener('click', toggleMode);
+header.addEventListener('click', headerClicks);
