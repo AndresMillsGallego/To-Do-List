@@ -8,14 +8,12 @@ let body = document.getElementById('body');
 // let photoArray = ['arc', 'beach', 'beach2', 'boulangerie', 'eiffel', 'paradise-pier', 'walt', 'tanzania'];
 let listArray = [];
 let listIdArray = [];
-let itemCounter = 0;
 
 function ListItem(text) {
   this.textContent = text;
   this.isChecked = false;
   this.isImportant = false;
 }
-
 
 function createButton(type, name, parentEl) {
   let button = document.createElement('button');
@@ -32,9 +30,9 @@ function unpackItems(key, array) {
   array.push(parsedItems);
 }
 
-function renderListItem(text) {
+function renderListItem(text, className) {
   let li = document.createElement('li');
-  li.className ='checkBox';
+  li.className = className;
   li.id = text;
   let label = document.createElement('label');
   let input =  document.createElement('input');
@@ -54,8 +52,7 @@ function handleSubmit(event) {
   listIdArray.push(newItem);
   let newListEntry = new ListItem(newItem);
   listArray.push(newListEntry);
-  renderListItem(newItem, itemCounter);
-  itemCounter++;
+  renderListItem(newItem, 'checkbox');
   form.reset();
 }
 
@@ -87,7 +84,6 @@ function handleClick(event) {
       } else {
         listArray[i].isChecked = false;
       }
-      console.log(listArray[i]);
     }
   }
 }
@@ -114,14 +110,21 @@ function buttonClicks(event) {
     unpackItems('listIds', listIdArray);
     for (let i = 0; i < listArray.length; i++) {
       let textContent = listArray[i].textContent;
-      renderListItem(textContent);
+      if (listArray[i].isChecked !== false) {
+        renderListItem(textContent, 'checkedBox');
+      }
+      else if (listArray[i].isImportant !== false) {
+        renderListItem(textContent, 'highlight');
+      } else {
+        renderListItem(textContent, 'checkbox');
+      }
     }
   }
+
   if (toggle.id === 'clear') {
     list.innerHTML = '';
   }
   if (toggle.id === 'delete') {
-    itemCounter = 0;
     localStorage.clear();
     listArray = [];
     listIdArray = [];
