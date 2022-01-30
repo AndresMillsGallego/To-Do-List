@@ -7,6 +7,7 @@ const list = document.getElementById('mainList');
 let body = document.getElementById('body');
 // let photoArray = ['arc', 'beach', 'beach2', 'boulangerie', 'eiffel', 'paradise-pier', 'walt', 'tanzania'];
 let listArray = [];
+let listIdArray = [];
 let itemCounter = 0;
 
 function ListItem(text) {
@@ -24,26 +25,17 @@ function createButton(type, name, parentEl) {
   parentEl.appendChild(button);
 }
 
-function unpackItems() {
-  let unpackedItems = localStorage.getItem('items');
-  if (unpackedItems) {
-    list.innerHTML = '';
-    let parsedItems = JSON.parse(unpackedItems);
-    for (let i = 0; i < parsedItems.length; i++) {
-      let textContent = parsedItems[i].textContent;
-      let id = i;
-      // let isChecked = order.isChecked;
-      // let isImportant = order.isImportant;
-      renderListItem(textContent, id);
-      listArray.push(parsedItems);
-    }
-  }
+function unpackItems(key, array) {
+  array = [];
+  let unpackedItems = localStorage.getItem(key);
+  let parsedItems = JSON.parse(unpackedItems);
+  array.push(parsedItems);
 }
 
-function renderListItem(text, elemId) {
+function renderListItem(text) {
   let li = document.createElement('li');
   li.className ='checkBox';
-  li.id = elemId;
+  li.id = text;
   let label = document.createElement('label');
   let input =  document.createElement('input');
   label.textContent = text;
@@ -59,6 +51,7 @@ function renderListItem(text, elemId) {
 function handleSubmit(event) {
   event.preventDefault();
   let newItem = event.target.listItem.value;
+  listIdArray.push(newItem);
   let newListEntry = new ListItem(newItem);
   listArray.push(newListEntry);
   renderListItem(newItem, itemCounter);
@@ -66,22 +59,23 @@ function handleSubmit(event) {
   form.reset();
 }
 
-function saveToStorage(item) {
-  let stringyItems = JSON.stringify(item);
-  localStorage.setItem('items', stringyItems);
+function saveToStorage(key, items) {
+  let stringyItems = JSON.stringify(items);
+  localStorage.setItem(key, stringyItems);
 }
 
 function handleClick(event) {
-  for (let i = 0; i < listArray.length; i++) {
-    let li = document.getElementById(i);
-    console.log(li);
+  for (let i = 0; i < listIdArray.length; i++) {
+    let listId = listIdArray[i];
+    let li = document.getElementById(listId);
     let targetButton = event.target;
-    if (targetButton.name === 'X' && targetButton.parentElement === li) {
+    if (targetButton.name === 'X' && targetButton.parentElement.id === listId) {
       list.removeChild(li);
       listArray.splice(i,1);
-    } else if (targetButton.name === '!' && targetButton.parentElement === li) {
+      listIdArray.splice(i, 1);
+    } else if (targetButton.name === '!' && targetButton.parentElement.id === listId) {
       li.classList.toggle('highlight');
-    } else if (targetButton.name === 'checkbox' && targetButton.parentElement.parentElement === li) {
+    } else if (targetButton.name === 'checkbox' && targetButton.parentElement.parentElement.id === listId) {
       li.classList.toggle('checkedBox');
     }
   }
@@ -101,11 +95,16 @@ function buttonClicks(event) {
     body.className = 'normalMode';
   }
   if (toggle.id === 'save') {
-    saveToStorage(listArray);
-    console.log('hi');
+    saveToStorage('items', listArray);
+    saveToStorage('listIds', listIdArray);
   }
   if (toggle.id === 'load') {
-    unpackItems();
+    unpackItems('items', listArray);
+    unpackItems('listIds', listIdArray);
+    for (let i = 0; i < listArray.length; i++) {
+      let textContent = listArray[i].textContent;
+      renderListItem(textContent);
+    }
   }
   if (toggle.id === 'clear') {
     list.innerHTML = '';
@@ -113,7 +112,8 @@ function buttonClicks(event) {
   if (toggle.id === 'delete') {
     itemCounter = 0;
     localStorage.clear();
-    listArray =[];
+    listArray = [];
+    listIdArray = [];
   }
 }
 
@@ -130,6 +130,9 @@ function buttonClicks(event) {
 // }
 
 // window.addEventListener('load', randomPicture);
+
+console.log(listArray);
+console.log(listIdArray);
 
 form.addEventListener('submit', handleSubmit);
 list.addEventListener('click', handleClick);
