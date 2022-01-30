@@ -75,8 +75,19 @@ function handleClick(event) {
       listIdArray.splice(i, 1);
     } else if (targetButton.name === '!' && targetButton.parentElement.id === listId) {
       li.classList.toggle('highlight');
+      if (listArray[i].isImportant !== true) {
+        listArray[i].isImportant = true;
+      } else {
+        listArray[i].isImportant = false;
+      }
     } else if (targetButton.name === 'checkbox' && targetButton.parentElement.parentElement.id === listId) {
       li.classList.toggle('checkedBox');
+      if (listArray[i].isChecked !== true) {
+        listArray[i].isChecked = true;
+      } else {
+        listArray[i].isChecked = false;
+      }
+      console.log(listArray[i]);
     }
   }
 }
