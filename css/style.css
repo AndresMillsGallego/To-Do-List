@@ -6,9 +6,9 @@
   background-color: rgba(58, 155, 187, 0.534);
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: rgba(0, 0, 0, 0.787);
-  max-width: 1024px;
+  width: 1024px;
   margin: 30px auto;
-  max-height: 100vh;
+  height: 100vh;
 }
 
 header {
@@ -92,6 +92,16 @@ img {
   font-size: 1.75rem;
 }
 
+#buttonDiv i:hover {
+  font-size: 1.85rem;
+  box-shadow: 0px 3px 3px;
+}
+
+#buttonDiv i:active {
+  background-color: inherit;
+  box-shadow: 0px 5px 5px;
+  transform: translateY(5px);
+}  
 p {
   margin-top: 5px;
 }
@@ -105,7 +115,7 @@ p {
 }
 
 .fa-backspace {
-  color:rebeccapurple;
+  color:blueviolet;
 }
 
 .fa-trash-alt {
@@ -224,7 +234,7 @@ input:hover {
   background-color: #0f1113c5;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   color:beige;
-  max-width: 1024px;
+  width: 1024px;
   margin: 30px auto;
   height: 100vh;
 }
