@@ -15,7 +15,7 @@ header {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: 3rem;
   padding: 1rem;
 }
 
@@ -27,8 +27,8 @@ header {
 h1 {
   font-size: 2rem;
   border-bottom: 3px double red;
-  padding-bottom: .5rem;
-  margin-bottom: .5rem;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
   word-spacing: 1rem;
 }
 
@@ -62,14 +62,6 @@ main {
   padding: 1rem;
   height: auto;
 }
-
-/* img {
-  max-width: 100%;
-  max-height: 100%;
-  margin: auto;
-  border: 2px solid dodgerblue;
-  border-radius: 5px;
-} */
 
 #renderedList {
   width: 50%;
@@ -228,6 +220,21 @@ input:hover {
   border: 2px solid midnightblue;
 }
 
+footer {
+  color: inherit;
+  text-align: center;
+  margin-top: 3rem;
+  font-size: 1.5rem;
+}
+
+footer p:first-child {
+  margin-bottom: 1.5rem;
+}
+
+em {
+  color: red;
+  font-weight: bold;
+}
 .darkMode {
   background-color: #0f1113c5;
   font-family: Verdana, Geneva, Tahoma, sans-serif;

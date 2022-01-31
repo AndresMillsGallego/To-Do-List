@@ -8,6 +8,7 @@ let body = document.getElementById('body');
 // let photoArray = ['arc', 'beach', 'beach2', 'boulangerie', 'eiffel', 'paradise-pier', 'walt', 'tanzania'];
 let listArray = [];
 let listIdArray = [];
+let clicks = 0;
 
 function ListItem(text) {
   this.textContent = text;
@@ -116,50 +117,43 @@ function buttonClicks(event) {
     listIdArray = [];
     unpackItems('items', listArray);
     unpackItems('listIds', listIdArray);
-    if (listArray.length > 0) {
+    if (clicks > 0) {
+      alert('Your list has already rendered');
+    }
+    else if (listArray.length > 0) {
       for (let i = 0; i < listArray.length; i++) {
         let textContent = listArray[i].textContent;
         if (listArray[i].isChecked !== false) {
           renderListItem(textContent, 'checkedBox');
+          clicks++;
         }
         else if (listArray[i].isImportant !== false) {
           renderListItem(textContent, 'highlight');
+          clicks++;
         } else {
           renderListItem(textContent, 'checkbox');
+          clicks++;
         }
       }
     } else {
       alert('You don\'t have any saved lists yet');
-    }
+    } console.log(clicks);
   }
 
   if (toggle.id === 'clear') {
     list.innerHTML = '';
+    clicks = 0;
   }
   if (toggle.id === 'delete') {
     localStorage.clear();
     listArray = [];
     listIdArray = [];
+    clicks = 0;
     alert('Your saved list has been deleted.');
   }
 }
 
-// function randomPicture() {
-//   let num = Math.floor(Math.random() * photoArray.length);
-//   console.log(num);
-//   let photo = `${photoArray[num]}.jpg`;
-//   let img = document.createElement('img');
-//   img.src = `../img/${photo}`;
-//   img.alt = photoArray[num];
-//   img.width = '430';
-//   img.height = '390';
-//   listDiv.appendChild(img);
-// }
-
-// window.addEventListener('load', randomPicture);
-
-console.log(listArray);
-console.log(listIdArray);
+// console.log(listArray); //Use this to make sure the array is filled when you want, and empty when it should be.
 
 form.addEventListener('submit', handleSubmit);
 list.addEventListener('click', handleClick);
