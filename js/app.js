@@ -24,10 +24,11 @@ function createButton(type, name, parentEl) {
 }
 
 function unpackItems(key, array) {
-  array = [];
   let unpackedItems = localStorage.getItem(key);
   let parsedItems = JSON.parse(unpackedItems);
-  array.push(parsedItems);
+  for (let i = 0; i < parsedItems.length; i++){
+    array.push(parsedItems[i]);
+  }
 }
 
 function renderListItem(text, className) {
@@ -102,22 +103,33 @@ function buttonClicks(event) {
     body.className = 'normalMode';
   }
   if (toggle.id === 'save') {
-    saveToStorage('items', listArray);
-    saveToStorage('listIds', listIdArray);
+    if (listArray.length > 0) {
+      saveToStorage('items', listArray);
+      saveToStorage('listIds', listIdArray);
+      alert('List Saved!');
+    } else {
+      alert('There isn\'t anything to save yet');
+    }
   }
   if (toggle.id === 'load') {
+    listArray = [];
+    listIdArray = [];
     unpackItems('items', listArray);
     unpackItems('listIds', listIdArray);
-    for (let i = 0; i < listArray.length; i++) {
-      let textContent = listArray[i].textContent;
-      if (listArray[i].isChecked !== false) {
-        renderListItem(textContent, 'checkedBox');
+    if (listArray.length > 0) {
+      for (let i = 0; i < listArray.length; i++) {
+        let textContent = listArray[i].textContent;
+        if (listArray[i].isChecked !== false) {
+          renderListItem(textContent, 'checkedBox');
+        }
+        else if (listArray[i].isImportant !== false) {
+          renderListItem(textContent, 'highlight');
+        } else {
+          renderListItem(textContent, 'checkbox');
+        }
       }
-      else if (listArray[i].isImportant !== false) {
-        renderListItem(textContent, 'highlight');
-      } else {
-        renderListItem(textContent, 'checkbox');
-      }
+    } else {
+      alert('You don\'t have any saved lists yet');
     }
   }
 
@@ -128,6 +140,7 @@ function buttonClicks(event) {
     localStorage.clear();
     listArray = [];
     listIdArray = [];
+    alert('Your saved list has been deleted.');
   }
 }
 

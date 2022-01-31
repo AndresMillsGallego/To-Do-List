@@ -3,9 +3,9 @@
 }
 
 .normalMode {
-  background-color: rgba(58, 155, 187, 0.534);
+  background-color: rgba(58, 155, 187, 0.6);
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  color: rgba(0, 0, 0, 0.787);
+  color: rgb(0, 0, 0);
   width: 1024px;
   margin: 30px auto;
   height: 100vh;
@@ -47,6 +47,7 @@ header i:hover {
 
 nav i {
   margin-left: 1rem;
+  font-size: 1.25rem;
 }
 
 
@@ -62,19 +63,19 @@ main {
   height: auto;
 }
 
-img {
+/* img {
   max-width: 100%;
   max-height: 100%;
   margin: auto;
   border: 2px solid dodgerblue;
   border-radius: 5px;
-}
+} */
 
 #renderedList {
   width: 50%;
   border: 3px solid midnightblue;
   border-radius: 5px;
-  background-color:papayawhip;
+  background-color:rgba(255, 239, 213, 0.897);
   padding: 2rem;
   box-shadow: 3px 3px yellow, 6px 6px midnightblue, 0px 5px 10px;
 }
@@ -89,19 +90,9 @@ img {
 
 #buttonDiv i {
   margin: auto;
-  font-size: 1.75rem;
+  font-size: 2rem;
 }
-
-#buttonDiv i:hover {
-  font-size: 1.85rem;
-  box-shadow: 0px 3px 3px;
-}
-
-#buttonDiv i:active {
-  background-color: inherit;
-  box-shadow: 0px 5px 5px;
-  transform: translateY(5px);
-}  
+ 
 p {
   margin-top: 5px;
 }
@@ -124,8 +115,14 @@ p {
 
 #buttonDiv i:hover {
   cursor: pointer;
-  font-size: 1.8rem;
+  font-size: 2.1rem;
 }
+
+#buttonDiv i:active {
+  background-color: inherit;
+  box-shadow: 0px 3px 3px;
+  transform: translateY(3px);
+} 
 
 #formDiv {
   width: 25%;
@@ -139,7 +136,6 @@ form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1rem;
 }
 
 fieldset {
@@ -155,12 +151,13 @@ fieldset {
 
 form button {
   padding: .5rem 2rem;
-  border-radius: 3px;
+  border-radius: 5px;
+  margin: 1rem 0;
 }
 
 form button:hover {
   cursor: pointer;
-  background-color:rgb(255, 239, 213)
+  background-color:aliceblue
 }
 
 ol {
@@ -170,12 +167,13 @@ ol {
 
 ul {
   list-style-type: none;
-  font-size: .75rem;
+  font-size: 1rem;
   text-align: center;
   border: 3px solid midnightblue;
   border-radius: 5px;
   padding: 5px;
   box-shadow: 0px 5px 10px;
+  margin-top: 1rem;
 }
 
 li {
@@ -246,7 +244,7 @@ input:hover {
 }
 .darkMode input {
   background-color: rgba(15, 13, 13, 0.76);
-  color: yellow;
+  color: inherit;
 }
 .darkMode #renderedList {
   box-shadow: 3px 3px deeppink, 6px 6px cyan, 0px 5px 10px;
